@@ -18,10 +18,10 @@ const server = http.createServer((request, response) => {
       email: 'jonh@email.com'
     });
 
-    return response.end('Criação de usuário')
+    return response.writeHead(201).end()
   }
 
-  return response.end('Hello world');
+  return response.writeHead(404).end('Not Found');
 });
 
 server.listen(3333);
@@ -41,3 +41,10 @@ server.listen(3333);
 
 //Cabeçalhos (Requisição/reponsta) => Metadados
 
+
+//HTTP status code
+//100 - 199 => status code informativo 
+//200 - 299 => status code de sucesso
+//300 - 399 => status code para redirect
+//400 - 499 => status client error responses (gerados pelo lado do cliente)
+//500 - 599 => status server error responses (gerados pelo servidor)
