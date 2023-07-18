@@ -1,13 +1,23 @@
 import http from 'node:http';
 
+const users = [];
+
 const server = http.createServer((request, response) => {
   const {method, url} = request;
 
   if(method === 'GET' && url === '/users') {
-    return response.end('Listagem de usuários');
+    return response
+    .setHeader('Content-type', 'application/json')
+    .end(JSON.stringify(users));
   }
 
   if(method === 'POST' && url === '/users'){
+    users.push({
+      id: 1,
+      name: 'Jonh doe',
+      email: 'jonh@email.com'
+    });
+
     return response.end('Criação de usuário')
   }
 
@@ -27,4 +37,7 @@ server.listen(3333);
 
 //GET /users => Buscando usuários no backend
 //POST /users => Criando um usuário no backend
+
+
+//Cabeçalhos (Requisição/reponsta) => Metadados
 
