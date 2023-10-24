@@ -1,16 +1,13 @@
 import http from 'node:http';
 import { json } from './middlewares/json.js';
-
-const users = [];
-
-const database = new Database();
+import { routes } from './routes.js';
 
 const server = http.createServer(async (request, response) => {
   const { method, url } = request;
   
   await json(request, response);
 
-  const route = route.find(route => {
+  const route = routes.find(route => {
     return route.method === method && route.path === url
   });
 
