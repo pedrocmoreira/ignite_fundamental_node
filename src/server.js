@@ -2,6 +2,13 @@ import http from 'node:http';
 import { json } from './middlewares/json.js';
 import { routes } from './routes.js';
 
+// Query parameters: URL stateful => filtros, paginação, não-obrigatórios
+// Route parameters: Identificação de recurso
+// Request body: Envio de informações de um formulário
+
+// http:localhost:3333/users?userId=1
+// http://localhost:3333/users/1
+
 const server = http.createServer(async (request, response) => {
   const { method, url } = request;
   
